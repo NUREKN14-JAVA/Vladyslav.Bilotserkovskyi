@@ -3,6 +3,7 @@ package com.vladbel.usermanagment.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConnectionFactoryImpl implements ConnectionFactory {
 	private String driver;
@@ -16,6 +17,13 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 		this.url = url;
 		this.user = user;
 		this.password = password;
+	}
+	public ConnectionFactoryImpl(Properties properties) {
+		user = properties.getProperty("connection.user");
+		password = properties.getProperty("connection.password");
+		url = properties.getProperty("connection.url");
+		driver = properties.getProperty("connection.driver");
+		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public Connection createConnection() throws DatabaseException {
